@@ -5,13 +5,13 @@ AllCops:
   # デフォルト設定にある"vendor/**/*"が無効化されないように記述
   Exclude:
     - 'bin/*'
-    - 'lib/*'
     - 'node_modules/**/*'
-    - 'db/**/*'
     - 'vendor/**/*'
-    - 'config/**/*'
     - 'script/**/*'
     - 'test/**'
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Documentation:
   Enabled: false

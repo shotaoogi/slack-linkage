@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins 'http://localhost:3000'
@@ -8,7 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              credentials: true
   end
 
-  #本番環境用のオリジン設定
+  # 本番環境用のオリジン設定
   allow do
     origins 'https:<自身が設定するアプリのURL>'
 
