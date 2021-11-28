@@ -9,6 +9,7 @@ AllCops:
     - 'vendor/**/*'
     - 'script/**/*'
     - 'test/**'
+    - 'db/schema.rb'
 
 Style/ClassAndModuleChildren:
   Enabled: false
