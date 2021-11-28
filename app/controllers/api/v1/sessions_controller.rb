@@ -1,20 +1,22 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < Api::V1::ApplicationController
-  def create
-    @user = User.find_by(email: session_params[:email])
+  skip_before_action :logged_in_user, only: %i[create]
 
-    if @user&.authenticate(session_params[:password])
-      login!
-      render json: { logged_in: true, user: @user.to_hash }
+  def create
+    user = User.find_by(email: session_params[:email])
+
+    if user&.authenticate(session_params[:password])
+      log_in(user)
+      render json: { logged_in: true, user: user.to_hash }
     else
       render json: { logged_in: false, errors: %w[認証に失敗しました。 正しいメールアドレス・パスワードを入力し直すか、新規登録を行ってください。] }
     end
   end
 
   def destroy
-    reset_session
-    render json: { status: "success", logged_out: true }
+    reset_session if logged_in?
+    render json: { status: 'success', logged_out: true }
   end
 
   def logged_in?
