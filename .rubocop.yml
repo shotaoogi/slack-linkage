@@ -14,5 +14,8 @@ AllCops:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/SymbolArray:
+  Enabled: false
+
 Documentation:
   Enabled: false
