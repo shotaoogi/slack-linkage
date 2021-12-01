@@ -19,7 +19,9 @@ class User < ApplicationRecord
     {
       id: id,
       name: name,
-      email: email
+      email: email,
+      createdAt: created_at,
+      updatedAt: updated_at
     }
   end
 

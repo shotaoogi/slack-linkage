@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::RegistrationsController < Api::V1::ApplicationController
-  def signup
-    @user = User.new(registrations_params)
+  skip_before_action :logged_in_user, only: %i[signup]
 
-    if @user.save
-      login!
-      render json: { status: :created, user: @user }
+  def signup
+    user = User.new(registrations_params)
+
+    if user.save
+      log_in(user)
+      render json: { status: :created, user: user.to_hash }
     else
       render json: { status: 500 }
     end
