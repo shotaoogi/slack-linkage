@@ -10,4 +10,7 @@ Rails.application.routes.draw do
       post '/logged_in', to: 'sessions#logged_in?'
     end
   end
+  namespace :slack do
+    resources :messages, %i[create]
+  end
 end
