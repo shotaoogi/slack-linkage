@@ -17,6 +17,6 @@ test:
 
 production:
   <<: *default
-  database: myapp_production
+  database: crova_production
   username: crova
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
