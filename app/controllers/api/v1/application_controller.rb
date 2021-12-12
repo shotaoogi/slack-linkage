@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::ApplicationController < ApplicationController
+class Api::V1::ApplicationController < ActionController::API
+  config.api_only = true
   include SessionsHelper
   before_action :logged_in_user
 
