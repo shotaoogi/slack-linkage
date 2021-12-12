@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       delete '/logout', to: 'sessions#destroy'
       post '/logged_in', to: 'sessions#logged_in?'
       namespace :slack do
-        resources :messages, only: %i[create]
+        resources :messages, only: %i[] do
+          collection do
+            post 'receive'
+          end
+        end
       end
     end
   end

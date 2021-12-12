@@ -7,12 +7,11 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
     render json: 'ok'
   end
 
-  def create
-    Rails.logger.info "Starting callback"
-    case params['type']
+  def receive
+    case params[:type]
     when 'url_verification'
-      Rails.logger.info "Return ok"
-      render json: @body
+      Rails.logger.info "Sending challenge to Slack"
+      render status: 200, json: { challenge: params[:challenge] }
     end
   end
 end
