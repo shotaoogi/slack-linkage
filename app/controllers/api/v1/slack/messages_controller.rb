@@ -8,9 +8,10 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
   end
 
   def create
-    @body = JSON.parse(request.body.read)
-    case @body['type']
+    Rails.logger.info "Starting callback"
+    case params['type']
     when 'url_verification'
+      Rails.logger.info "Return ok"
       render json: @body
     end
   end
