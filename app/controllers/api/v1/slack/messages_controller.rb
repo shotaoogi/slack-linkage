@@ -12,6 +12,13 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
     when 'url_verification'
       Rails.logger.info "Sending challenge to Slack"
       render status: 200, json: { challenge: params[:challenge] }
+    when 'event_callback'
+      Slack.chat_postMessage(
+        as_user: 'true',
+        channel: @body['event']['channel'],
+        text: @body['event']['text']
+      )
+      render status: 200, json: { challenge: params[:challenge] }
     end
   end
 end
