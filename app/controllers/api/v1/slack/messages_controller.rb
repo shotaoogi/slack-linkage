@@ -15,8 +15,8 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
     when 'event_callback'
       Slack.chat_postMessage(
         as_user: 'true',
-        channel: @body['event']['channel'],
-        text: @body['event']['text']
+        channel: params[:event]['channel'],
+        text: params[:event]['text']
       )
       render status: 200, json: { challenge: params[:challenge] }
     end
