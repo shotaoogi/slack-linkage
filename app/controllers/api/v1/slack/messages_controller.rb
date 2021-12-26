@@ -11,14 +11,10 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
     case params[:type]
     when 'url_verification'
       Rails.logger.info "Sending challenge to Slack"
-      render status: 200, json: { challenge: params[:challenge] }
-    when 'event_callback'
-      Slack.chat_postMessage(
-        as_user: 'true',
-        channel: params[:event]['channel'],
-        text: params[:event]['text']
-      )
-      render status: 200, json: { challenge: params[:challenge] }
+    render status: 200, json: { challenge: params[:challenge] }
     end
+    Rails.logger.info "Sending shortcut modal"
+    response = Slack::Events::Request.new(params)
+    render status: 200, json: { body: response.body}
   end
 end
