@@ -8,6 +8,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
 
     if user&.authenticate(session_params[:password])
       log_in(user)
+      remember(user)
       render json: { logged_in: true, user: user.to_hash }
     else
       render json: { logged_in: false, errors: %w[認証に失敗しました。 正しいメールアドレス・パスワードを入力し直すか、新規登録を行ってください。] }
