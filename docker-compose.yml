@@ -13,11 +13,11 @@ services:
       - mysql-data:/var/lib/mysql
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     volumes:
       - .:/myapp
     ports:
-      - "3001:3001"
+      - "8080:8080"
     depends_on:
       - db
     stdin_open: true
