@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         resources :messages, only: %i[index] do
           collection do
             post 'receive'
+            post 'slash_command'
           end
         end
       end

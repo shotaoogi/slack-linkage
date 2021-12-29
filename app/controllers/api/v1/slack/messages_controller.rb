@@ -17,6 +17,10 @@ class Api::V1::Slack::MessagesController < Api::V1::ApplicationController
     end
   end
 
+  def slash_command
+    render status: 200, json: { text: params.to_json }
+  end
+
   private
 
   def client
