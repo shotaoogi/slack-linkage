@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bcrypt', '~> 3.1.11'
 gem 'rack-cors', '~> 1.1.1'
 gem 'slack-ruby-client', '~> 0.17.0'
+gem 'httparty', '~> 0.17.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
