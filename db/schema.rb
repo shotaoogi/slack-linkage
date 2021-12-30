@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_30_035105) do
+ActiveRecord::Schema.define(version: 2021_12_30_035554) do
+
+  create_table "linkages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "token", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_linkages_on_organization_id"
+  end
 
   create_table "organization_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_035105) do
     t.string "remember_digest"
   end
 
+  add_foreign_key "linkages", "organizations"
   add_foreign_key "organization_users", "organizations"
   add_foreign_key "organization_users", "users"
 end
