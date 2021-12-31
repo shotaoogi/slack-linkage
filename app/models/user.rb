@@ -4,6 +4,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   has_secure_password
 
+  has_many :organization_users, dependent: :destroy
+  has_many :organizations, through: :organization_users
   validates :name, presence: true
   validates :email, presence: true
   validates :email, uniqueness: true
@@ -18,6 +20,7 @@ class User < ApplicationRecord
       id: id,
       name: name,
       email: email,
+      organization: organizations,
       createdAt: created_at,
       updatedAt: updated_at
     }
