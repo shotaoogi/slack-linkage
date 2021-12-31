@@ -20,7 +20,7 @@ class Api::V1::SessionsController < Api::V1::ApplicationController
     render json: { status: 'success', logged_out: true }
   end
 
-  def logged_in?
+  def logged_in
     if current_user
       render json: { logged_in: true, user: current_user.to_hash }
     else
