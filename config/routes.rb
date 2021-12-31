@@ -17,6 +17,7 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :linkages, only: %i[index create]
     end
   end
 end
